@@ -1,8 +1,16 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Stack
+Nextjs 13.5.6
+Material UI 5.14.15
+
+Graphql 16.8.1
+Appollo Server 4.9.4
+Apollo Client 3.8.6
+
 ## Getting Started
 
-First, run the development server:
+First, run the development server: And open [ocalhost](http://localhost:3000/)
 
 ```bash
 npm run dev
@@ -14,27 +22,37 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## About 
+It's a kanban board for agile project management, it visualizes how work is being done. 
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Features
+1. Ability to create columns, rename and delete them.
+2. Create tasks within the columns
+3. Drag drop tasks from one column to another
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+# So, what's inside the folders.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 1. Components.
+Here we have our components. Inside this e have `ui` which will contain the re-usable components for the entire app.
+The other folders will represent a `page`. e.g `index` holds components specific to the `index` page.
 
-## Learn More
+## 2. Config
+The configuration files for the app, you can have common configs here e.g theme..
 
-To learn more about Next.js, take a look at the following resources:
+## 3. Data
+This will act as our database, holds the JSON files for persisting data.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 4. Graphql
+Graphql configs are here. We have the set up for Apollo client, Server Schema and Resolvers defined here.
+Also we have our `.gql` mutations and queries. Each .gql file is one of these.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 5. Pages
+It's a next.js app, here we have our views, basically the components that represent pages. We only have one page 
+so there is only the index page. But wait, we have api here too...
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 6. Pages/api
+In next.js this directory is treated as an API endpoint instead of a page. This means that everithing inside here 
+will run on the server and not client. Thanks to that, we can have our Apollo Server running here. So it's possible
+to access server modules e.g database queries, FileSystem... , instead of having a different app to handle a minimal
+server, this is sufficient.
