@@ -8,14 +8,16 @@ import {
   TextField,
 } from "@mui/material";
 import { useState } from "react";
-import CardItem from "./CardItem";
+import CardItem from "../cardItem/CardItem";
 import PropTypes from "prop-types";
 import { useDrop } from "react-dnd";
 import { useMutation } from "@apollo/client";
 
+import Styles from "./Column.module.css";
+
 import CREATE_CARD from "@/graphql/mutations/CreateTask.gql";
 import MOVE_TASK from "@/graphql/mutations/MoveTask.gql";
-import ColumnHeader from "./ColumnHeader";
+import ColumnHeader from "../columnHeader/ColumnHeader";
 
 const Column = (props: any) => {
   const { column, refetchColumns } = props;
@@ -23,13 +25,13 @@ const Column = (props: any) => {
   const [showAddCardForm, setShowAddCardForm] = useState(false);
   const [cardNameInput, setCardNameInput] = useState("");
 
-  
-
   // Handle Drop
   const [{ isOver, canDrop }, dropRef] = useDrop({
     accept: "Card",
-    drop: (item: any) => {  
-      moveCardMutation({variables: { newColumnId: column.id, taskId: item.id }});
+    drop: (item: any) => {
+      moveCardMutation({
+        variables: { newColumnId: column.id, taskId: item.id },
+      });
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -42,7 +44,7 @@ const Column = (props: any) => {
     useMutation(MOVE_TASK, {
       onCompleted: () => {
         refetchColumns();
-      }
+      },
     });
 
   //Add Card
@@ -54,23 +56,22 @@ const Column = (props: any) => {
     onCompleted: () => {
       setCardNameInput("");
       setShowAddCardForm(false);
-      refetchColumns()
+      refetchColumns();
     },
   });
 
   return (
-    <Card sx={{ width: "100%", height: "fit-content", maxWidth: "300px" }}>
+    <Card className={Styles.Container}>
       <ColumnHeader column={column} refetchColumns={refetchColumns} />
 
-      <CardContent
-        sx={{
-          borderTop: "1px solid #cccbcb",
-          borderBottom: "1px solid #cccbcb",
-        }}
-      >
+      <CardContent className={Styles.CardContent}>
         <Box ref={dropRef} minHeight={40}>
           {column?.tasks?.map((task: any) => (
-            <CardItem card={task} key={task.id} />
+            <CardItem
+              card={task}
+              key={task.id}
+              refetchColumns={refetchColumns}
+            />
           ))}
         </Box>
       </CardContent>

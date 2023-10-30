@@ -1,4 +1,4 @@
-import Column from "@/components/index/Column";
+import Column from "@/components/index/column/Column";
 import { ArrowRight } from "@mui/icons-material";
 import {
   Box,
@@ -13,6 +13,8 @@ import {
 import Head from "next/head";
 import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
+
+import Styles from "../styles/Home.module.css";
 
 import GET_COLUMNS from "@/graphql/queries/GetColumns.gql";
 import CREATE_COLUMN from "@/graphql/mutations/CreateColumn.gql";
@@ -56,10 +58,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Container
-        maxWidth="xl"
-        sx={{ backgroundColor: "#f5f5f5", height: "100vh", paddingTop: 3 }}
-      >
+      <Container maxWidth="xl" className={Styles.Container}>
         <Typography variant="h5" fontWeight="bold" color="black">
           Kanban
         </Typography>
@@ -127,19 +126,8 @@ export default function Home() {
             </Card>
           )}
 
-          {data?.columns?.length >4 && (
-            <Typography
-              sx={{
-                position: "absolute",
-                top: 20,
-                right: 20,
-                padding: 1,
-                color: 'brown',
-                borderRadius: 2,
-                border: "1px solid brown",
-                backgroundColor: 'beige'
-              }}
-            >
+          {data?.columns?.length > 4 && (
+            <Typography className={Styles.MaxColumnMessage}>
               You have reached limit for creating columns
             </Typography>
           )}

@@ -8,7 +8,7 @@ import {
   TextField,
 } from "@mui/material";
 import { CancelOutlined, CheckCircle, MoreHoriz } from "@mui/icons-material";
-import ModalDialog from "../ui/ModalDialog";
+import ModalDialog from "../../ui/ModalDialog";
 import PropTypes from "prop-types";
 
 
