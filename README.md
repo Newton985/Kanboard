@@ -1,12 +1,12 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Stack
-Nextjs 13.5.6
-Material UI 5.14.15
+## Main Technologies
+1. Nextjs 13.5.6
+2. Material UI 5.14.15
 
-Graphql 16.8.1
-Appollo Server 4.9.4
-Apollo Client 3.8.6
+3. Graphql 16.8.1
+4. Appollo Server 4.9.4
+5. Apollo Client 3.8.6
 
 ## Getting Started
 
